@@ -186,6 +186,11 @@
           "nullable": false,
           "description": "约定保量目标"
         },
+        "unit_price_minor": {
+          "type": "int",
+          "nullable": false,
+          "description": "每个合格指标单位的合同美分单价"
+        },
         "frequency_cap": {
           "type": "int",
           "nullable": false,
@@ -239,8 +244,8 @@
       },
       "key": "id",
       "references": {},
-      "sha256": "ee80566b3aeba57e6fecc0b75d33153d3841e7d31cff726e6711038276fbcec5",
-      "row_count": 3
+      "sha256": "c9a1eedbadfc93036579dbe1bf0afc19b198e7f5a0b44c5106df9db9bb2d4372",
+      "row_count": 4
     },
     "playback": {
       "description": "播放平台原始回传，镜像共享origin_event。",
@@ -337,6 +342,11 @@
           "nullable": false,
           "description": "调查家庭身份"
         },
+        "known_household": {
+          "type": "str",
+          "nullable": true,
+          "description": "与播放计量家庭的已确认联系，空为无法确认"
+        },
         "region": {
           "type": "str",
           "nullable": false,
@@ -368,9 +378,13 @@
         "match": [
           "matches",
           "id"
+        ],
+        "known_household": [
+          "household_links",
+          "household"
         ]
       },
-      "sha256": "5e688dbe5d347697e7bbb62a97a0eb75b0fe0aa980db2853e1cefe72e1acda28",
+      "sha256": "76774c1aba57f0b544c605e01fae64042832fbd03a583718ab7ecd88f377025a",
       "row_count": 2400
     },
     "recognized_delivery": {
@@ -458,7 +472,7 @@
           "id"
         ]
       },
-      "sha256": "1a76cde35dff10d938835a3072e73604ed6ea57c37357fdb3b26e1b3f0fda45f",
+      "sha256": "3fa0a6941f46a64681b8dd41016246acb6db3173148c685b07e710c0b30676af",
       "row_count": 2
     },
     "makegood_requests": {
