@@ -1,0 +1,543 @@
+{
+  "format": "jsonl-utf8-v1",
+  "synthetic": true,
+  "tables": {
+    "devices": {
+      "description": "匿名观众设备及受众属性。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "设备"
+        },
+        "region": {
+          "type": "str",
+          "nullable": false,
+          "description": "地区"
+        },
+        "segment": {
+          "type": "str",
+          "nullable": false,
+          "description": "合成受众层"
+        },
+        "consent": {
+          "type": "bool",
+          "nullable": false,
+          "description": "是否允许用于赞助计量"
+        }
+      },
+      "key": "id",
+      "references": {},
+      "sha256": "302b491c9fa32a301677089e63848a77afaf058f43e1ca380e7252a24d28ab69",
+      "row_count": 600
+    },
+    "household_links": {
+      "description": "设备联系的证据及生效范围，possible为尚未裁定。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "联系证据"
+        },
+        "devices": {
+          "type": "list",
+          "nullable": false,
+          "description": "关联设备"
+        },
+        "household": {
+          "type": "str",
+          "nullable": false,
+          "description": "匿名家庭"
+        },
+        "status": {
+          "type": "str",
+          "nullable": false,
+          "description": "confirmed明确联系或possible可能联系"
+        },
+        "effective_from": {
+          "type": "str",
+          "nullable": false,
+          "description": "业务生效日"
+        },
+        "received_on": {
+          "type": "str",
+          "nullable": false,
+          "description": "证据到达日"
+        }
+      },
+      "key": "id",
+      "references": {},
+      "sha256": "6f8e22de758698fda29b170494ce7c72c7387509742a54af4bf6aecc2f75dec5",
+      "row_count": 240
+    },
+    "matches": {
+      "description": "已发生与未来场次。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "场次"
+        },
+        "on": {
+          "type": "str",
+          "nullable": false,
+          "description": "直播日"
+        },
+        "platform": {
+          "type": "str",
+          "nullable": false,
+          "description": "转播平台"
+        },
+        "region": {
+          "type": "str",
+          "nullable": false,
+          "description": "主市场"
+        },
+        "competition": {
+          "type": "str",
+          "nullable": false,
+          "description": "赛事季"
+        },
+        "state": {
+          "type": "str",
+          "nullable": false,
+          "description": "已完成或已排期"
+        }
+      },
+      "key": "id",
+      "references": {},
+      "sha256": "26b7297bcfff66406cc991da4090bec90919acc8cfae35cb48b63a40abfdec99",
+      "row_count": 60
+    },
+    "ad_breaks": {
+      "description": "广告段库存，排他性属于整个段。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "广告段"
+        },
+        "match": {
+          "type": "str",
+          "nullable": false,
+          "description": "场次"
+        },
+        "start_seconds": {
+          "type": "int",
+          "nullable": false,
+          "description": "距场次开始秒"
+        },
+        "duration_seconds": {
+          "type": "int",
+          "nullable": false,
+          "description": "广告段长度秒"
+        },
+        "exclusive": {
+          "type": "bool",
+          "nullable": false,
+          "description": "是否排他交付"
+        },
+        "inventory_cost_minor": {
+          "type": "int",
+          "nullable": false,
+          "description": "补量采购成本美分"
+        },
+        "accepted_contract": {
+          "type": "str",
+          "nullable": true,
+          "description": "已经承诺的合同，空表示未承诺"
+        }
+      },
+      "key": "id",
+      "references": {
+        "match": [
+          "matches",
+          "id"
+        ]
+      },
+      "sha256": "79cd54ee526ba5a8ad4c1dadd2850afbd900add79fbe145f8ded5d2fad7462fc",
+      "row_count": 180
+    },
+    "sponsorships": {
+      "description": "赞助合同已接受的业务权益。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "合同"
+        },
+        "advertiser": {
+          "type": "str",
+          "nullable": false,
+          "description": "广告主"
+        },
+        "category": {
+          "type": "str",
+          "nullable": false,
+          "description": "竞品类别"
+        },
+        "metric": {
+          "type": "str",
+          "nullable": false,
+          "description": "保证家庭触达或合格分钟"
+        },
+        "target": {
+          "type": "float",
+          "nullable": false,
+          "description": "约定保量目标"
+        },
+        "frequency_cap": {
+          "type": "int",
+          "nullable": false,
+          "description": "每户合同期最多计入曝光次数"
+        },
+        "regions": {
+          "type": "list",
+          "nullable": false,
+          "description": "允许地区"
+        },
+        "segments": {
+          "type": "list",
+          "nullable": false,
+          "description": "允许受众层"
+        },
+        "platforms": {
+          "type": "list",
+          "nullable": false,
+          "description": "有效转播渠道"
+        },
+        "asset_versions": {
+          "type": "list",
+          "nullable": false,
+          "description": "客户认可素材版本"
+        },
+        "allow_parallel_credit": {
+          "type": "bool",
+          "nullable": false,
+          "description": "同片段能否并计非排他权益"
+        },
+        "splittable": {
+          "type": "bool",
+          "nullable": false,
+          "description": "客户可否拆分接受补量"
+        },
+        "budget_minor": {
+          "type": "int",
+          "nullable": false,
+          "description": "可用于补量采购的预算"
+        },
+        "period_from": {
+          "type": "str",
+          "nullable": false,
+          "description": "合同期起日"
+        },
+        "period_to": {
+          "type": "str",
+          "nullable": false,
+          "description": "合同期末日"
+        }
+      },
+      "key": "id",
+      "references": {},
+      "sha256": "ee80566b3aeba57e6fecc0b75d33153d3841e7d31cff726e6711038276fbcec5",
+      "row_count": 3
+    },
+    "playback": {
+      "description": "播放平台原始回传，镜像共享origin_event。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "回传"
+        },
+        "origin_event": {
+          "type": "str",
+          "nullable": false,
+          "description": "原始播放事件身份"
+        },
+        "device": {
+          "type": "str",
+          "nullable": false,
+          "description": "设备"
+        },
+        "match": {
+          "type": "str",
+          "nullable": false,
+          "description": "场次"
+        },
+        "ad_break": {
+          "type": "str",
+          "nullable": false,
+          "description": "广告段"
+        },
+        "asset_version": {
+          "type": "str",
+          "nullable": false,
+          "description": "素材版本"
+        },
+        "visible_seconds": {
+          "type": "int",
+          "nullable": false,
+          "description": "明确可见秒数"
+        },
+        "played_seconds": {
+          "type": "int",
+          "nullable": false,
+          "description": "播放秒数"
+        },
+        "covered": {
+          "type": "bool",
+          "nullable": false,
+          "description": "是否有有效可见性监测"
+        },
+        "background": {
+          "type": "bool",
+          "nullable": false,
+          "description": "是否后台播放"
+        },
+        "reported_on": {
+          "type": "str",
+          "nullable": false,
+          "description": "到达日"
+        }
+      },
+      "key": "id",
+      "references": {
+        "device": [
+          "devices",
+          "id"
+        ],
+        "match": [
+          "matches",
+          "id"
+        ],
+        "ad_break": [
+          "ad_breaks",
+          "id"
+        ]
+      },
+      "sha256": "dcc97f76a78525e80bebdba96e59c67e4b92e8993551c1471172d6f45ddb8b77",
+      "row_count": 5400
+    },
+    "audience_panels": {
+      "description": "历史及未来场次受众调查，同一panel_household可跨场次出现。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "调查"
+        },
+        "match": {
+          "type": "str",
+          "nullable": false,
+          "description": "场次"
+        },
+        "panel_household": {
+          "type": "str",
+          "nullable": false,
+          "description": "调查家庭身份"
+        },
+        "region": {
+          "type": "str",
+          "nullable": false,
+          "description": "地区"
+        },
+        "segment": {
+          "type": "str",
+          "nullable": false,
+          "description": "受众层"
+        },
+        "inclusion_probability": {
+          "type": "float",
+          "nullable": false,
+          "description": "纳入概率"
+        },
+        "attended": {
+          "type": "bool",
+          "nullable": false,
+          "description": "已发生场次实际观看或未来场次已表明意愿"
+        },
+        "surveyed_on": {
+          "type": "str",
+          "nullable": false,
+          "description": "调查到达日"
+        }
+      },
+      "key": "id",
+      "references": {
+        "match": [
+          "matches",
+          "id"
+        ]
+      },
+      "sha256": "5e688dbe5d347697e7bbb62a97a0eb75b0fe0aa980db2853e1cefe72e1acda28",
+      "row_count": 2400
+    },
+    "recognized_delivery": {
+      "description": "商务先前认定的原始播放归属。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "认定"
+        },
+        "origin_event": {
+          "type": "str",
+          "nullable": false,
+          "description": "播放事件"
+        },
+        "contract": {
+          "type": "str",
+          "nullable": false,
+          "description": "赞助合同"
+        },
+        "recognized_on": {
+          "type": "str",
+          "nullable": false,
+          "description": "认定日"
+        },
+        "credited_units": {
+          "type": "float",
+          "nullable": false,
+          "description": "当时认定单位数，依合同指标"
+        },
+        "recognition_version": {
+          "type": "int",
+          "nullable": false,
+          "description": "认定版本"
+        }
+      },
+      "key": "id",
+      "references": {
+        "contract": [
+          "sponsorships",
+          "id"
+        ]
+      },
+      "sha256": "f6bf49e8e5a44085f586d45754bcb1b26fffb4a2eb70b36916a9b5eb842a61d6",
+      "row_count": 120
+    },
+    "invoices": {
+      "description": "已开票和收款事实。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "账单"
+        },
+        "contract": {
+          "type": "str",
+          "nullable": false,
+          "description": "赞助合同"
+        },
+        "recognitions": {
+          "type": "list",
+          "nullable": false,
+          "description": "采用的商务认定"
+        },
+        "amount_minor": {
+          "type": "int",
+          "nullable": false,
+          "description": "票面美分"
+        },
+        "issued_on": {
+          "type": "str",
+          "nullable": false,
+          "description": "开票日"
+        },
+        "paid_minor": {
+          "type": "int",
+          "nullable": false,
+          "description": "已收款美分"
+        }
+      },
+      "key": "id",
+      "references": {
+        "contract": [
+          "sponsorships",
+          "id"
+        ]
+      },
+      "sha256": "1a76cde35dff10d938835a3072e73604ed6ea57c37357fdb3b26e1b3f0fda45f",
+      "row_count": 2
+    },
+    "makegood_requests": {
+      "description": "客户补量申请及共同竞争的广告段。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "补量申请"
+        },
+        "contract": {
+          "type": "str",
+          "nullable": false,
+          "description": "赞助合同"
+        },
+        "ad_breaks": {
+          "type": "list",
+          "nullable": false,
+          "description": "候选广告段"
+        },
+        "requested_on": {
+          "type": "str",
+          "nullable": false,
+          "description": "申请日"
+        },
+        "accepted_breaks": {
+          "type": "list",
+          "nullable": false,
+          "description": "客户明确已接受部分"
+        },
+        "all_or_none": {
+          "type": "bool",
+          "nullable": false,
+          "description": "是否须整体落实"
+        }
+      },
+      "key": "id",
+      "references": {
+        "contract": [
+          "sponsorships",
+          "id"
+        ]
+      },
+      "sha256": "5dd383671ee7b103e30d7faa066ebc529c5af41fa7c8807468ae623927e598d2",
+      "row_count": 2
+    },
+    "later_evidence": {
+      "description": "后续家庭裁定、可见性更正及平台上架回执。",
+      "fields": {
+        "id": {
+          "type": "str",
+          "nullable": false,
+          "description": "后续资料"
+        },
+        "kind": {
+          "type": "str",
+          "nullable": false,
+          "description": "证据类别"
+        },
+        "subject": {
+          "type": "str",
+          "nullable": false,
+          "description": "所涉业务身份"
+        },
+        "received_on": {
+          "type": "str",
+          "nullable": false,
+          "description": "到达日"
+        },
+        "payload": {
+          "type": "dict",
+          "nullable": false,
+          "description": "外部事实与作用范围"
+        }
+      },
+      "key": "id",
+      "references": {},
+      "sha256": "4e17034fe15d4eca1c0cb7be80a087019edb43e9b63419f5fe3888c2805b1e93",
+      "row_count": 4
+    }
+  }
+}

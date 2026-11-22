@@ -1,0 +1,4 @@
+{"id":"L1","kind":"household_confirm","subject":"H-merge-new","received_on":"2026-08-28","payload":{"devices":["D0120","D0144"],"household":"HH-merged","effective_from":"2026-06-01"}}
+{"id":"L2","kind":"visibility_revision","subject":"EV0003","received_on":"2026-08-29","payload":{"visible_seconds":10,"covered":true}}
+{"id":"L3","kind":"asset_online","subject":"B135","received_on":"2026-08-30","payload":{"contract":"C-drink-a","asset_version":"a-v2","on":"2026-08-30"}}
+{"id":"L4","kind":"asset_failed","subject":"B138","received_on":"2026-08-30","payload":{"contract":"C-drink-b"}}

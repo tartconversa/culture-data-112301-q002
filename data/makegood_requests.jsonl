@@ -1,0 +1,2 @@
+{"id":"Q-A","contract":"C-drink-a","ad_breaks":["B135","B138","B141"],"requested_on":"2026-08-26","accepted_breaks":["B135"],"all_or_none":false}
+{"id":"Q-B","contract":"C-drink-b","ad_breaks":["B135","B138"],"requested_on":"2026-08-26","accepted_breaks":[],"all_or_none":true}
